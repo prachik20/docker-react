@@ -15,7 +15,7 @@ jobs:
         with:
           image: docke20/docker-react
           tags: v1, latest
-          registry: docke20/docker-react
-          dockerfile: Dockerfile.ci
+          registry: docker.io
+
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
