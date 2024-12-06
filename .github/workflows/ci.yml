@@ -14,7 +14,7 @@ jobs:
         name: Build & push Docker image
         with:
           image: docke20/docker-react
-          tags: v1, latest
-          registry: registry.hub.docker.com
+
+          registry: docke20/docker-react
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
