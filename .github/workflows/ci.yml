@@ -5,16 +5,20 @@ on:
     branches: ["master"]
 
 jobs:
-  deploy:
-    name: Deploy
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build & push Docker image
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          image: docke20/docker-react
-
-          registry: docke20/docker-react
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: user/app:latest
